@@ -1,6 +1,6 @@
 # Makefile
 
-Welcome to the Understanding Makefiles repository! This repository serves as a comprehensive guide to learning and mastering Makefiles, an essential tool for automating build processes in software development.
+Welcome to the Understanding Makefiles repository! This repository serves as a comprehensive guide to learning and understanding Makefiles, an essential tool for automating build processes in software development.
 
 # What are Makefiles?
 Makefiles are text files containing directives for automating the building of software projects. They specify how to compile and link code, manage dependencies, and execute tasks efficiently.
