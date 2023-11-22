@@ -1,6 +1,7 @@
+# Venturing into the depths ;)
 Frequently, our programs consist of multiple files. Consider compiling numerous `.c` and `.h` files into a single executable. Here, object files (`.o`) prove incredibly useful. By constructing rules to generate intermediate `.o` files and creating a comprehensive "master" rule that combines or links these object files, we streamline the compilation process.
 
-This is how our Makefile would like in this case :
+This is how our Makefile would like in this case 1:
 
 
 ```template
@@ -18,7 +19,16 @@ file2.o: file2.c defs.h
 file3.o: file3.c constants.h defs.h
     gcc -c file3.c
 ```
+Implimenting it on our last Makefile which uses only one file(main.c):
 
+```example
+main: main.o
+    gcc -o main main.o
+
+main.o: main.c
+    gcc -c main.c
+
+```
 >This Makefile demonstrates how the **main** executable is built by compiling individual source files into object files and then linking these object files together to create the final executable. Each .o file is produced from its respective .c file and associated header files using the gcc -c command.
 
 - - - 
@@ -30,3 +40,59 @@ Note :
 - **gcc** is specifically associated with the GNU C Compiler within the GCC suite. On the other hand, cc is a more general command that could point to different C compilers installed on a system.
 
 - - -
+Utilizing `variables` in Makefiles can enhance readability and ease of maintenance.Now let's make our case 1 looks more elegant by using variables :
+
+```bash
+OBJECTS = file1.o file2.o file3.o
+main: $(OBJECTS)
+    gcc -o main $(OBJECTS)
+```
+#same for others
+
+What if we want to add some command line options to our `gcc` call? For example, running `gcc main.c -Werror -Wextra -Wall -o main`? To do this, we just parameterize the `gcc` part of a recipe. 
+Let's see how our case 1 would look like :
+
+```bash
+CC = gcc
+CFLAGS = -Werror -Wextra -Wall
+
+OBJECTS = file1.o file2.o file3.o
+
+main: $(OBJECTS)
+    $(CC) -o main $(OBJECTS)
+
+file1.o: file1.c file1.h defs.h
+    $(CC) $(CFLAGS) -c file1.c
+
+file2.o: file2.c defs.h
+    $(CC) $(CFLAGS) -c file2.c
+
+file3.o: file3.c constants.h defs.h
+    $(CC) $(CFLAGS) -c file3.c
+```
+Now that we've generated multiple files during the build process, many of which are no longer needed, it's a good practice to clean them up. Therefore let's incorporate a clean target using the **.PHONY** directive to automate the removal of these surplus files.
+
+```bash
+CC = gcc
+CFLAGS = -Werror -Wextra -Wall
+
+OBJECTS = file1.o file2.o file3.o
+
+main: $(OBJECTS)
+    $(CC) -o main $(OBJECTS)
+
+file1.o: file1.c file1.h defs.h
+    $(CC) $(CFLAGS) -c file1.c
+
+file2.o: file2.c defs.h
+    $(CC) $(CFLAGS) -c file2.c
+
+file3.o: file3.c constants.h defs.h
+    $(CC) $(CFLAGS) -c file3.c
+
+.PHONY: clean
+clean:
+    rm -f main $(OBJECTS)
+
+```
+>The clean target, marked as .PHONY, allows executing the clean command without considering if a file named clean exists. Running make clean will remove the main executable and the object files (file1.o, file2.o, file3.o), effectively cleaning up the unnecessary files generated during compilation.

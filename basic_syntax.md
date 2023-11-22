@@ -21,12 +21,7 @@ target: Represents the output file being generated.
 dependency1 dependency2: Depicts the files or commands required to generate the target.
 command1, command2: Shell commands used to generate the target from its dependencies.
 ```
-# Example
-Consider a simple Makefile rule that compiles a C program (main.c) into an executable (main)
-```makefile
-main: main.c
-    gcc -o main main.c
-```
+
 # Rules and Indentation
 Makefiles use indentation **TAB**to distinguish commands associated with a target.
 **WARNING**: Makefiles are picky about spacing. Each line in a recipe must be prefixed by a `TAB` character. Four spaces don't work, it really needs to be tabs.
