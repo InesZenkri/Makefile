@@ -46,10 +46,13 @@ Utilizing `variables` in Makefiles can enhance readability and ease of maintenan
 OBJECTS = file1.o file2.o file3.o
 main: $(OBJECTS)
     gcc -o main $(OBJECTS)
+#and so on
 ```
-#same for others
+- - - 
 
-What if we want to add some command line options to our `gcc` call? For example, running `gcc main.c -Werror -Wextra -Wall -o main`? To do this, we just parameterize the `gcc` part of a recipe. 
+What if we want to add some command line options to our `gcc` call? 
+For example, running `gcc main.c -Werror -Wextra -Wall -o main`? 
+To do this, we just parameterize the `gcc` part of a recipe. 
 Let's see how our case 1 would look like :
 
 ```bash
@@ -70,6 +73,9 @@ file2.o: file2.c defs.h
 file3.o: file3.c constants.h defs.h
     $(CC) $(CFLAGS) -c file3.c
 ```
+>When you compile using make and mention `$(CC)`, it guarantees the usage of the C compiler you've set, which is `gcc` here. Also, when you use `CFLAGS`, it automatically adds particular flags like`-Werror, -Wextra, and -Wall` during the compilation process. 
+This way, you ensure that your code is compiled with these specific settings each time without typing them repeatedly!
+- - - 
 Now that we've generated multiple files during the build process, many of which are no longer needed, it's a good practice to clean them up. Therefore let's incorporate a clean target using the **.PHONY** directive to automate the removal of these surplus files.
 
 ```bash
@@ -96,3 +102,5 @@ clean:
 
 ```
 >The clean target, marked as .PHONY, allows executing the clean command without considering if a file named clean exists. Running make clean will remove the main executable and the object files (file1.o, file2.o, file3.o), effectively cleaning up the unnecessary files generated during compilation.
+
+In the examples/first_step directory, a Makefile demonstrates this process.

@@ -41,7 +41,7 @@ target: dependency
 Let's revisit the familiar gcc main.c -o main command we're all accustomed to.
 > When compiling a C program like main.c, there are several steps involved before executing the program[ see more ](steps.md#steps)
 
-In the examples/test directory, a Makefile demonstrates this process. Start by executing:
+In the examples/first_step directory, a Makefile demonstrates this process. Start by executing:
 ```bash
 $ gcc main.c -o main; ./main
 > Our first Makefile !
@@ -54,4 +54,6 @@ $ make; ./main
 our first Makefile! And it's just one line :
 ```Makefile
 main: main.c
+#Cool XD
 ```
+

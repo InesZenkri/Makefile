@@ -27,3 +27,7 @@ Learn the fundamental structure of Makefiles, including targets, dependencies, a
 * [Beyond the Basics](beyond_basics.md#beyond-basics)
 
 Let's Explore Makefiles Further.
+
+* [Connect everything](everything_is_connected.md#everything_is_connected)
+
+Let's build our final well presented Makefile
