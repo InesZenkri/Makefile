@@ -25,16 +25,16 @@ clean:
 	rm -f $(OBJECTS) $(EXEC)
 
 ```
-> EXEC = main: Specifies the name of the final executable that will be generated.
+> `EXEC = main`: Specifies the name of the final executable that will be generated.
 
-> all: $(EXEC): Defines the default target all, specifying that the EXEC target should be built when running **make** without any arguments.
+> `all: $(EXEC)`: Defines the default target all, specifying that the EXEC target should be built when running **make** without any arguments.
 
-> %.o: %.c: This line specifies a pattern rule where **%** is a wildcard that matches any sequence of characters. It says that for any file ending with **.o** as a target and a corresponding **.c** file as a prerequisite, this rule applies.
+> `%.o: %.c`: This line specifies a pattern rule where **%** is a wildcard that matches any sequence of characters. It says that for any file ending with **.o** as a target and a corresponding **.c** file as a prerequisite, this rule applies.
 
->$(CC) $(CFLAGS) -c $< -o $@: Compilation command for generating object files from C source files.
-    -c: Indicates that the compiler should generate object files rather than executables.
-    $<: Automatic variable representing the first prerequisite (the .c file).
-    -o $@: Indicates the output file (the .o file). `$@` is an automatic variable representing the target.
+> `$(CC) $(CFLAGS) -c $< -o $@`: Compilation command for generating object files from C source files.
+    * `-c`: Indicates that the compiler should generate object files rather than executables.
+    * `$<`: Automatic variable representing the first prerequisite (the .c file).
+    * `-o $@`: Indicates the output file (the .o file). `$@` is an automatic variable representing the target.
 - - - 
 **Now let's compile it :**
 ```bash
@@ -56,6 +56,7 @@ clean:
 ```
 - - - 
 **What if you don't want the terminal to display the commands while compiling?**
+
 You can use the `@` symbol at the beginning of the command lines in your Makefile. This suppresses the display of the commands themselves while they're being executed.
 ```bash 
 CC = gcc

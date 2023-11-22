@@ -1,7 +1,7 @@
 # Venturing into the depths ;)
 Frequently, our programs consist of multiple files. Consider compiling numerous `.c` and `.h` files into a single executable. Here, object files (`.o`) prove incredibly useful. By constructing rules to generate intermediate `.o` files and creating a comprehensive "master" rule that combines or links these object files, we streamline the compilation process.
 
-This is how our Makefile would like in this case 1:
+This is how our Makefile would like in this `case 1`:
 
 
 ```template
@@ -40,7 +40,7 @@ Note :
 - **gcc** is specifically associated with the GNU C Compiler within the GCC suite. On the other hand, cc is a more general command that could point to different C compilers installed on a system.
 
 - - -
-Utilizing `variables` in Makefiles can enhance readability and ease of maintenance.Now let's make our case 1 looks more elegant by using variables :
+Utilizing `variables` in Makefiles can enhance readability and ease of maintenance.Now let's make our `case 1` looks more elegant by using variables :
 
 ```bash
 OBJECTS = file1.o file2.o file3.o
@@ -53,7 +53,7 @@ main: $(OBJECTS)
 What if we want to add some command line options to our `gcc` call? 
 For example, running `gcc main.c -Werror -Wextra -Wall -o main`? 
 To do this, we just parameterize the `gcc` part of a recipe. 
-Let's see how our case 1 would look like :
+Let's see how our `case 1` would look like :
 
 ```bash
 CC = gcc
@@ -103,4 +103,4 @@ clean:
 ```
 >The clean target, marked as .PHONY, allows executing the clean command without considering if a file named clean exists. Running make clean will remove the main executable and the object files (file1.o, file2.o, file3.o), effectively cleaning up the unnecessary files generated during compilation.
 
-In the examples/first_step directory, a Makefile demonstrates this process.
+In the [examples/second_step](examples/second_step) directory, a Makefile demonstrates this process.
