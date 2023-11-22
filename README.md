@@ -20,9 +20,10 @@ or perhaps
 > The utility of `make` extends beyond mere efficiency. It not only facilitates the creation of shortcuts for routine commands but also serves as a means to eliminate unnecessary clutter within your project. Additionally, its capability to selectively recompile essential parts becomes notably advantageous in colossal codebases, where recompiling only what's needed saves significant time and resources.
 
 # Where to start from?
-*[Basic Syntax and Structure](basic_syntax.md#basic-syntax-and-structure)
+* [Basic Syntax and Structure](basic_syntax.md#basic-syntax-and-structure)
 
 Learn the fundamental structure of Makefiles, including targets, dependencies, and commands, using simple examples.
 
-*[Beyond the Basics](beyond_basics.md#beyond-basics)
+* [Beyond the Basics](beyond_basics.md#beyond-basics)
+
 Let's Explore Makefiles Further.

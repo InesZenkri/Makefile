@@ -2,3 +2,21 @@ Frequently, our programs consist of multiple files. Consider compiling numerous 
 
 This is how our Makefile would like in this case :
 
+
+```template
+main: file1.o file2.o file3.o
+    gcc -o main file1.o \
+      file2.o \
+      file3.o
+
+file1.o: file1.c file1.h defs.h
+    gcc -c file1.c
+
+file2.o: file2.c defs.h
+    gcc -c file2.c
+
+file3.o: file3.c constants.h defs.h
+    gcc -c file3.c
+```
+
+>This Makefile demonstrates how the main executable is built by compiling individual source files into object files and then linking these object files together to create the final executable. Each .o file is produced from its respective .c file and associated header files using the gcc -c command.
